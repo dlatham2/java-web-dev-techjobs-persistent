@@ -2,7 +2,9 @@ package org.launchcode.javawebdevtechjobspersistent.controllers;
 
 import antlr.collections.AST;
 import org.launchcode.javawebdevtechjobspersistent.models.Job;
+import org.launchcode.javawebdevtechjobspersistent.models.data.EmployerRepository;
 import org.launchcode.javawebdevtechjobspersistent.models.data.JobRepository;
+import org.launchcode.javawebdevtechjobspersistent.models.data.SkillRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -23,6 +25,12 @@ public class ListController {
     @Autowired
     private JobRepository jobRepository;
 
+    @Autowired
+    private EmployerRepository employerRepository;
+
+    @Autowired
+    private SkillRepository skillRepository;
+
     static HashMap<String, String> columnChoices = new HashMap<>();
 
     public ListController () {
@@ -36,9 +44,7 @@ public class ListController {
     @RequestMapping("")
     public String list(Model model) {
 
-        AST employerRepository = null;
         model.addAttribute("employers", employerRepository.findAll());
-        AST skillRepository = null;
         model.addAttribute("skills", skillRepository.findAll());
 
         return "list";
