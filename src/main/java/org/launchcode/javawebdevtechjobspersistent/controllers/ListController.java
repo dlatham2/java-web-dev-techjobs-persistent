@@ -1,5 +1,6 @@
 package org.launchcode.javawebdevtechjobspersistent.controllers;
 
+import antlr.collections.AST;
 import org.launchcode.javawebdevtechjobspersistent.models.Job;
 import org.launchcode.javawebdevtechjobspersistent.models.data.JobRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,7 +36,9 @@ public class ListController {
     @RequestMapping("")
     public String list(Model model) {
 
+        AST employerRepository = null;
         model.addAttribute("employers", employerRepository.findAll());
+        AST skillRepository = null;
         model.addAttribute("skills", skillRepository.findAll());
 
         return "list";
